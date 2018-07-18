@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 from django.shortcuts import render
-from app1.models import StudyHall
-from app1.models import Enquiry
-from app1.models import Expense
-
-
+from app1.models import StudyHall, Expenses, Enquiry, Course, Student, Expenses
 # Create your views here.
-def view_index(request):
+def study(request):
 	if request.method=="POST":
 		data = request.POST
 		if data.get("enquiry"):
@@ -45,7 +42,7 @@ def view_index(request):
 		"students": students,
 		"courses": courses 
 		})
-def view_syudyhalls(request):
+def studyhalls(request):
 	studyhalls = StudyHall.objects.all()
 	return render(request,"app1/index.html",{"studyhalls":studyhalls})
 
