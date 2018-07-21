@@ -28,6 +28,8 @@
     <li class="active"><a data-toggle="tab" href="#menu1">Studay Hall</a></li>
     <li><a data-toggle="tab" href="#menu2">Enquiry</a></li>
     <li><a data-toggle="tab" href="#menu3">Expenses</a></li>
+    <li><a data-toggle="tab" href="#menu4">Student</a></li>
+    <li><a data-toggle="tab" href="#menu5">Course</a></li>
   </ul>
 
   <div class="tab-content">
@@ -125,7 +127,7 @@
             <th>desc</th>
             <th>value</th>
         </tr>
-      <!-- <p>{{exps }}</p> -->
+      <!-- <p>{{exps}}</p> -->
         {% for exp in exps%}
         <tr>
           <td>{{ exp.studyhall }}</td>
@@ -139,8 +141,61 @@
       </table>
     </div>
     </div>
+      <div id="menu4" class="tab-pane fade">
+    <h4>STUDENT</h4>
+    <p>This page contains the student information</p>
+    <div class=row>
+      <form method ="post">
+        {% csrf_token %}
+        Name:<input type="text" name="name">
+        Address:<input type="text" name="address">
+        Phone:<input type="text" name="Phone">
+        Email:<input type="text" name="email">
+        <input type="submit" name="student" value="Createstudent">
+      </form>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tr>
+          <th>studentname</th>
+          <th>address</th>
+          <th>phone</th>
+          <th>email</th>
+        </tr>
+        {% for student in students %}
+          <tr>
+            <td>{{ student.name}}</td>
+            <td>{{ student.address}}</td>
+            <td>{{ student.phone}}</td>
+            <td>{{ student.email}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+   <div id="menu5" class="tab-pane fade">
+    <h5>COURSE</h5>
+    <p>This page contains course details</p>
+    <div class=row>
+      <form method="post">
+        {%csrf_token %}
+        Name:<input type="text" name="coursename">
+        <input type="submit" name="course" value="entercourse">
+      </form>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tr>
+          <th>coursename</th>
+        </tr>
+        {% for course in courses %}
+          <tr>
+            <td>{{course.name}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
-
 </body>
 </html>

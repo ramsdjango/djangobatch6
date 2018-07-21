@@ -26,10 +26,16 @@ def study(request):
 				value = data.get("exp_value"),
 				)
 			exp.save()
-		else:
+		elif data.get("studyhall"):
 			hall = StudyHall(name=data.get("hall_name"), 
 				area=data.get("hall_area"))
 			hall.save()
+		elif data.get("student"):
+			stud_inst=Student(name=data.get("name"),address=data.get("address"),phone=data.get("Phone"),email=data.get("email"))
+			stud_inst.save()
+		else:
+			cour_inst=Course(name=data.get("coursename"))
+			cour_inst.save()
 	studyhalls = StudyHall.objects.all()
 	expenses = Expenses.objects.all()
 	enquiries = Enquiry.objects.all()
@@ -45,6 +51,3 @@ def study(request):
 def studyhalls(request):
 	studyhalls = StudyHall.objects.all()
 	return render(request,"app1/index.html",{"studyhalls":studyhalls})
-
-	
-
